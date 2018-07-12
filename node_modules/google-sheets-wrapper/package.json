@@ -1,0 +1,57 @@
+{
+  "_from": "google-sheets-wrapper@^1.0.4",
+  "_id": "google-sheets-wrapper@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-ka/3/sS7d7YqAAB89rqkCcbC9BI=",
+  "_location": "/google-sheets-wrapper",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "google-sheets-wrapper@^1.0.4",
+    "name": "google-sheets-wrapper",
+    "escapedName": "google-sheets-wrapper",
+    "rawSpec": "^1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.4"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/google-sheets-wrapper/-/google-sheets-wrapper-1.0.4.tgz",
+  "_shasum": "91aff7fec4bb77b62a00007cf6baa409c6c2f412",
+  "_spec": "google-sheets-wrapper@^1.0.4",
+  "_where": "/Users/jessicaleason/Documents/iX/golden-thread-api",
+  "author": {
+    "name": "Xavier Decuyper",
+    "email": "hi@savjee.be"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@types/node": "^7.0.5",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^17.1.0"
+  },
+  "deprecated": false,
+  "description": "Lightweight wrapper around the official Google Sheets API that makes it easy to read/write rows",
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.39",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
+  },
+  "keywords": [
+    "google sheets",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "google-sheets-wrapper",
+  "scripts": {
+    "pretest": "tsc",
+    "test": "tslint **/*.ts --exclude '**/node_modules/**' && mocha tests/"
+  },
+  "version": "1.0.4"
+}
