@@ -6,6 +6,7 @@ export declare class ParticipantController {
     getAllParticipants(): Promise<Array<any>>;
     getSpecificParticipant_Id(participantId: string): Promise<any>;
     getSpecificParticipant_name(name: string): Promise<any>;
-    getSpecificParticipant_team(team: string): Promise<Array<Participant>>;
+    getSpecificParticipant_uniqname(uniqname: string): Promise<any>;
+    getSpecificParticipant_team(team: number): Promise<Array<Participant>>;
     createParticipant(participant: Participant): Promise<Participant>;
 }

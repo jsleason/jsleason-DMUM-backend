@@ -48,7 +48,7 @@ let RelationController = class RelationController {
         // throw new HttpErrors.NotFound("Sorry, relation not found");
     }
     async createRelation(relation) {
-        let createdRelation = await this.relationRepo.create(relation_1.Relation);
+        let createdRelation = await this.relationRepo.create(relation);
         return createdRelation;
     }
 };

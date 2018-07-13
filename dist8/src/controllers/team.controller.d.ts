@@ -6,5 +6,5 @@ export declare class TeamController {
     getAllTeams(): Promise<Array<any>>;
     getSpecificTeam_Id(teamId: number): Promise<any>;
     getSpecificTeam_Name(name: string): Promise<any>;
-    createTeam(participant: Teams): Promise<Teams>;
+    createTeam(team: Teams): Promise<Teams>;
 }

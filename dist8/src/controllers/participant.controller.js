@@ -38,6 +38,9 @@ let ParticipantController = class ParticipantController {
     async getSpecificParticipant_name(name) {
         return await this.participantRepo.findIndividual_name(name);
     }
+    async getSpecificParticipant_uniqname(uniqname) {
+        return await this.participantRepo.findIndividual_uniqname(uniqname);
+    }
     async getSpecificParticipant_team(team) {
         return await this.participantRepo.find({ where: { team } });
     }
@@ -67,10 +70,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ParticipantController.prototype, "getSpecificParticipant_name", null);
 __decorate([
-    rest_1.get("/teamParticipants"),
-    __param(0, rest_1.param.query.string("team")),
+    rest_1.get("/participantUniqname"),
+    __param(0, rest_1.param.query.string("uniqname")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ParticipantController.prototype, "getSpecificParticipant_uniqname", null);
+__decorate([
+    rest_1.get("/teamParticipants"),
+    __param(0, rest_1.param.query.number("team")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ParticipantController.prototype, "getSpecificParticipant_team", null);
 __decorate([

@@ -73,6 +73,26 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     throw new Error("Participant not found");
   }
 
+  async findIndividual_uniqname(uniqname: string) {
+    let dancerData = await this.findAllDancers();
+
+    dancerData.forEach((item: any) => {
+      if (item.uniqname == uniqname) {
+        return item;
+      }
+    });
+
+    let alumData = await this.findAllAlum();
+
+    alumData.forEach((item: any) => {
+      if (item.uniqname == uniqname) {
+        return item;
+      }
+    });
+
+    throw new Error("Participant not found");
+  }
+
   //async function setAuth(step) {
   //var creds = require('./credentials.json');
   //}

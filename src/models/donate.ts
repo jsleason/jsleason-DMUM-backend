@@ -23,11 +23,6 @@ export class Donate extends Entity {
   dancer: string;
 
   @property({
-    type: "string"
-  })
-  processing: string;
-
-  @property({
     type: "number"
   })
   relationId: number;
@@ -38,14 +33,19 @@ export class Donate extends Entity {
   news_email: string;
 
   @property({
-    type: "string"
+    type: "number"
   })
-  employer: string;
+  eventId: number;
 
   @property({
     type: "number"
   })
-  eventId: number;
+  amount: number;
+
+  @property({
+    type: "string"
+  })
+  chargeId: string;
 
   getId() {
     return this.id;

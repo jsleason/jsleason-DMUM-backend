@@ -35,12 +35,12 @@ export class RegistrationPromosController {
 
   }
 
-  @post("/newRegistrationPromos")
+  @post("/newRegistrationPromo")
   async createPromo(
-    @requestBody() participant: RegistrationPromos
+    @requestBody() promo: RegistrationPromos
   ): Promise<RegistrationPromos> {
 
-    let createdPromo = await this.registrationPromosRepo.create(RegistrationPromos);
+    let createdPromo = await this.registrationPromosRepo.create(promo);
     return createdPromo;
 
   }

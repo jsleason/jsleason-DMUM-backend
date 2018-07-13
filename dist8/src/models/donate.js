@@ -36,12 +36,6 @@ __decorate([
 ], Donate.prototype, "dancer", void 0);
 __decorate([
     repository_1.property({
-        type: "string"
-    }),
-    __metadata("design:type", String)
-], Donate.prototype, "processing", void 0);
-__decorate([
-    repository_1.property({
         type: "number"
     }),
     __metadata("design:type", Number)
@@ -54,16 +48,22 @@ __decorate([
 ], Donate.prototype, "news_email", void 0);
 __decorate([
     repository_1.property({
-        type: "string"
+        type: "number"
     }),
-    __metadata("design:type", String)
-], Donate.prototype, "employer", void 0);
+    __metadata("design:type", Number)
+], Donate.prototype, "eventId", void 0);
 __decorate([
     repository_1.property({
         type: "number"
     }),
     __metadata("design:type", Number)
-], Donate.prototype, "eventId", void 0);
+], Donate.prototype, "amount", void 0);
+__decorate([
+    repository_1.property({
+        type: "string"
+    }),
+    __metadata("design:type", String)
+], Donate.prototype, "chargeId", void 0);
 Donate = __decorate([
     repository_1.model({
         name: "donate"

@@ -31,8 +31,8 @@ let SponsorPromosController = class SponsorPromosController {
     async getSpecificPromo_title(title) {
         return await this.sponsorPromosRepo.find({ where: { title } });
     }
-    async createPromo(participant) {
-        let createdPromo = await this.sponsorPromosRepo.create(sponsor_promos_1.SponsorPromos);
+    async createPromo(promo) {
+        let createdPromo = await this.sponsorPromosRepo.create(promo);
         return createdPromo;
     }
 };

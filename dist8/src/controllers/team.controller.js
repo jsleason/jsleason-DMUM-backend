@@ -31,8 +31,8 @@ let TeamController = class TeamController {
     async getSpecificTeam_Name(name) {
         return await this.teamRepo.find({ where: { name } });
     }
-    async createTeam(participant) {
-        let createdTeam = await this.teamRepo.create(team_1.Teams);
+    async createTeam(team) {
+        let createdTeam = await this.teamRepo.create(team);
         return createdTeam;
     }
 };

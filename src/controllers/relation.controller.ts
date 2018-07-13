@@ -61,7 +61,7 @@ export class RelationController {
     @requestBody() relation: Relation
   ): Promise<Relation> {
 
-    let createdRelation = await this.relationRepo.create(Relation);
+    let createdRelation = await this.relationRepo.create(relation);
     return createdRelation;
 
   }

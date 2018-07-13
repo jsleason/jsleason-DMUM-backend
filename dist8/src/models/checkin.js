@@ -23,9 +23,9 @@ __decorate([
 ], Checkin.prototype, "eventId", void 0);
 __decorate([
     repository_1.property({
-        type: "number",
+        type: "string",
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Checkin.prototype, "participantId", void 0);
 __decorate([
     repository_1.property({

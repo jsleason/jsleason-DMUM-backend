@@ -9,4 +9,5 @@ export declare class ParticipantRepository extends DefaultCrudRepository<Partici
     findAllAlum(): Promise<any>;
     findAllDancers(): Promise<any>;
     findIndividual_name(name: string): Promise<void>;
+    findIndividual_uniqname(uniqname: string): Promise<void>;
 }

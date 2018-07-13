@@ -35,10 +35,10 @@ export class SponsorPromosController {
 
   @post("/newSponsorPromos")
   async createPromo(
-    @requestBody() participant: SponsorPromos
+    @requestBody() promo: SponsorPromos
   ): Promise<SponsorPromos> {
 
-    let createdPromo = await this.sponsorPromosRepo.create(SponsorPromos);
+    let createdPromo = await this.sponsorPromosRepo.create(promo);
     return createdPromo;
 
   }

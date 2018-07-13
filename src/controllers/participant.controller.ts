@@ -43,9 +43,17 @@ export class ParticipantController {
 
   }
 
+  @get("/participantUniqname")
+  async getSpecificParticipant_uniqname(
+    @param.query.string("uniqname") uniqname: string
+  ): Promise<any> {
+    return await this.participantRepo.findIndividual_uniqname(uniqname);
+
+  }
+
   @get("/teamParticipants")
   async getSpecificParticipant_team(
-    @param.query.string("team") team: string
+    @param.query.number("team") team: number
   ): Promise<Array<Participant>> {
     return await this.participantRepo.find({ where: { team } });
   }

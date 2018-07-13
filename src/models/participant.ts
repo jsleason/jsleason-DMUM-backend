@@ -13,6 +13,12 @@ export class Participant extends Entity {
   participantId: number;
 
   @property({
+    type: "string",
+    id: true
+  })
+  uniqname: string;
+
+  @property({
     type: "string"
   })
   name: string;

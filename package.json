@@ -57,11 +57,12 @@
     "@loopback/rest": "^0.15.1",
     "bcryptjs": "^2.4.3",
     "db-migrate-mysql": "^1.1.10",
-    "google-sheets-wrapper": "^1.0.4",
     "google-auth-library": "^0.10.0",
+    "google-sheets-wrapper": "^1.0.4",
     "googleapis": "^17.1.0",
     "jsonwebtoken": "^8.3.0",
-    "loopback-connector-mysql": "^5.2.0"
+    "loopback-connector-mysql": "^5.2.0",
+    "stripe": "^6.2.1"
   },
   "devDependencies": {
     "@loopback/build": "^0.6.11",

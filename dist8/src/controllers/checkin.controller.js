@@ -25,7 +25,7 @@ let CheckinController = class CheckinController {
         this.checkinRepo = checkinRepo;
         this.eventRepo = eventRepo;
     }
-    async getAllCheckins(day) {
+    async getAllCheckins() {
         return await this.checkinRepo.find();
     }
     async getSpecificCheckin_Id(checkinId) {
@@ -58,9 +58,8 @@ let CheckinController = class CheckinController {
 };
 __decorate([
     rest_1.get("/allCheckins"),
-    __param(0, rest_1.param.query.string("checkin")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CheckinController.prototype, "getAllCheckins", null);
 __decorate([
@@ -72,9 +71,9 @@ __decorate([
 ], CheckinController.prototype, "getSpecificCheckin_Id", null);
 __decorate([
     rest_1.get("/participantCheckins"),
-    __param(0, rest_1.param.query.number("participantId")),
+    __param(0, rest_1.param.query.string("participantId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CheckinController.prototype, "getParticipantCheckins", null);
 __decorate([

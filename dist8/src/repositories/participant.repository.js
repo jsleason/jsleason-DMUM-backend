@@ -67,6 +67,21 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         });
         throw new Error("Participant not found");
     }
+    async findIndividual_uniqname(uniqname) {
+        let dancerData = await this.findAllDancers();
+        dancerData.forEach((item) => {
+            if (item.uniqname == uniqname) {
+                return item;
+            }
+        });
+        let alumData = await this.findAllAlum();
+        alumData.forEach((item) => {
+            if (item.uniqname == uniqname) {
+                return item;
+            }
+        });
+        throw new Error("Participant not found");
+    }
 };
 ParticipantRepository = __decorate([
     __param(0, core_1.inject('datasources.db')),

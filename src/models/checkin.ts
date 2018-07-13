@@ -12,9 +12,9 @@ export class Checkin extends Entity {
   eventId: number;
 
   @property({
-    type: "number",
+    type: "string",
   })
-  participantId: number;
+  participantId: string;
 
   @property({
     type: "number",

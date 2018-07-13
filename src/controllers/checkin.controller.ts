@@ -18,7 +18,6 @@ export class CheckinController {
 
   @get("/allCheckins")
   async getAllCheckins(
-    @param.query.string("checkin") day: string
   ): Promise<Array<any>> {
     return await this.checkinRepo.find();
   }
@@ -43,7 +42,7 @@ export class CheckinController {
 
   @get("/participantCheckins")
   async getParticipantCheckins(
-    @param.query.number("participantId") participantId: number
+    @param.query.string("participantId") participantId: string
   ): Promise<Array<any>> {
     // check if a Check In corresponding to checkingId exists
 

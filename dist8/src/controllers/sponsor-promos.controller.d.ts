@@ -6,5 +6,5 @@ export declare class SponsorPromosController {
     getAllPromos(): Promise<Array<any>>;
     getSpecificPromo_Id(sponsorPromoId: number): Promise<any>;
     getSpecificPromo_title(title: string): Promise<any>;
-    createPromo(participant: SponsorPromos): Promise<SponsorPromos>;
+    createPromo(promo: SponsorPromos): Promise<SponsorPromos>;
 }

@@ -6,5 +6,5 @@ export declare class RegistrationPromosController {
     getAllPromos(): Promise<Array<any>>;
     getSpecificPromo_Id(registrationPromoId: number): Promise<any>;
     getSpecificPromo_title(title: string): Promise<any>;
-    createPromo(participant: RegistrationPromos): Promise<RegistrationPromos>;
+    createPromo(promo: RegistrationPromos): Promise<RegistrationPromos>;
 }

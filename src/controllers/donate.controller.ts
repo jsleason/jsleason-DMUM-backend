@@ -2,6 +2,7 @@ import { get, param, HttpErrors, post, requestBody } from "@loopback/rest";
 import { Donate } from "../models/donate";
 import { repository } from "@loopback/repository";
 import { DonateRepository } from "../repositories/donate.repository";
+var stripe = require("stripe")("sk_test_24DOtrdc3BkC9qL4kO0Jp4cR");
 
 // Uncomment these imports to begin using these cool features!
 
@@ -76,11 +77,14 @@ export class DonateController {
   async createDonate(
     @requestBody() donate: Donate
   ): Promise<Donate> {
-
+    const charge = stripe.charges.create({
+      amount: donate.amount,
+      currency: 'usd',
+      source: 'token',
+    });
+    let chargeId = charge.id;
     let createdDonate = await this.donateRepo.create(donate);
     return createdDonate;
-
   }
-
 
 }

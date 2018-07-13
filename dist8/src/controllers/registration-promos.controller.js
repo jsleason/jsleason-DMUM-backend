@@ -31,8 +31,8 @@ let RegistrationPromosController = class RegistrationPromosController {
     async getSpecificPromo_title(title) {
         return await this.registrationPromosRepo.find({ where: { title } });
     }
-    async createPromo(participant) {
-        let createdPromo = await this.registrationPromosRepo.create(registration_promos_1.RegistrationPromos);
+    async createPromo(promo) {
+        let createdPromo = await this.registrationPromosRepo.create(promo);
         return createdPromo;
     }
 };
@@ -57,7 +57,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RegistrationPromosController.prototype, "getSpecificPromo_title", null);
 __decorate([
-    rest_1.post("/newRegistrationPromos"),
+    rest_1.post("/newRegistrationPromo"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [registration_promos_1.RegistrationPromos]),

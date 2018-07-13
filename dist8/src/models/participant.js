@@ -24,6 +24,13 @@ __decorate([
 ], Participant.prototype, "participantId", void 0);
 __decorate([
     repository_1.property({
+        type: "string",
+        id: true
+    }),
+    __metadata("design:type", String)
+], Participant.prototype, "uniqname", void 0);
+__decorate([
+    repository_1.property({
         type: "string"
     }),
     __metadata("design:type", String)

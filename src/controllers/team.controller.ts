@@ -35,10 +35,10 @@ export class TeamController {
 
   @post("/newTeam")
   async createTeam(
-    @requestBody() participant: Teams
+    @requestBody() team: Teams
   ): Promise<Teams> {
 
-    let createdTeam = await this.teamRepo.create(Teams);
+    let createdTeam = await this.teamRepo.create(team);
     return createdTeam;
 
   }
