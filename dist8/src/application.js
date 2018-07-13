@@ -25,7 +25,12 @@ class DMUM extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestAppl
         // Use below for an in-memory database
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
-            connector: 'memory'
+            connector: "loopback-connector-mysql",
+            "host": "localhost",
+            "port": "3306",
+            "user": "root",
+            "password": "",
+            "database": "DMUM"
         });
         this.dataSource(dataSourceConfig);
     }
