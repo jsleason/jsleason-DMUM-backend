@@ -30,7 +30,7 @@ export class Donate extends Entity {
   @property({
     type: "string"
   })
-  news_email: string;
+  email: string;
 
   @property({
     type: "number"

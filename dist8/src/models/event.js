@@ -54,7 +54,7 @@ __decorate([
 ], Event.prototype, "description", void 0);
 Event = __decorate([
     repository_1.model({
-        name: "event"
+        name: "events"
     })
 ], Event);
 exports.Event = Event;

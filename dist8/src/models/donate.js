@@ -45,7 +45,7 @@ __decorate([
         type: "string"
     }),
     __metadata("design:type", String)
-], Donate.prototype, "news_email", void 0);
+], Donate.prototype, "email", void 0);
 __decorate([
     repository_1.property({
         type: "number"

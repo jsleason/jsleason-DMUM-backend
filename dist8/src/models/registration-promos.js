@@ -36,7 +36,7 @@ __decorate([
 ], RegistrationPromos.prototype, "description", void 0);
 RegistrationPromos = __decorate([
     repository_1.model({
-        name: "registration-promos"
+        name: "registrationPromos"
     })
 ], RegistrationPromos);
 exports.RegistrationPromos = RegistrationPromos;

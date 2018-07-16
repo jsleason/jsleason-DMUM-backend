@@ -30,7 +30,7 @@ __decorate([
 ], Teams.prototype, "name", void 0);
 Teams = __decorate([
     repository_1.model({
-        name: "teams"
+        name: "team"
     })
 ], Teams);
 exports.Teams = Teams;

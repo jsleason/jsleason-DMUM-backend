@@ -15,32 +15,47 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('event', {
-    eventid: {
+
+  db.createTable('donate', {
+    donateId: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     name: {
       type: 'string',
-      length: 60
+      length: 255
     },
-    date: {
-      type: 'date'
-    },
-    time: {
-      type: 'time'
-    },
-    location: {
+    dancer: {
       type: 'string'
     },
-    description: {
+    relationId: {
+      type: 'int'
+    },
+    email: {
+      type: 'string'
+    },
+    eventId: {
+      type: 'int'
+    },
+    amount: {
+      type: 'decimal'
+    },
+    chargeId: {
       type: 'string'
     }
   }, callback);
+
 };
 
-exports.down = function (db) {
-  return null;
+exports.down = function (db, callback) {
+
+  db.dropTable('donate', function (err) {
+    if (err) return callback(err);
+
+    return callback();
+  });
+
 };
 
 exports._meta = {

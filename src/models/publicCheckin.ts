@@ -1,31 +1,31 @@
 import { model, property, Entity } from "@loopback/repository";
 
 @model({
-  name: "sponsorPromos"
+  name: "publicCheckin"
 })
 
-export class SponsorPromos extends Entity {
+export class PublicCheckin extends Entity {
+
+  @property({
+    type: "number",
+  })
+  eventId: number;
+
+  @property({
+    type: "string",
+  })
+  name: string;
+
+  @property({
+    type: "string",
+  })
+  uniqname: string;
 
   @property({
     type: "number",
     id: true
   })
-  sponsorPromoId: number;
-
-  @property({
-    type: "string"
-  })
-  title: string;
-
-  @property({
-    type: "string"
-  })
-  link: string;
-
-  @property({
-    type: "string"
-  })
-  code: string;
+  checkinId: number;
 
   getId() {
     return this.id;

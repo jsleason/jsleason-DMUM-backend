@@ -42,7 +42,7 @@ __decorate([
 ], SponsorPromos.prototype, "code", void 0);
 SponsorPromos = __decorate([
     repository_1.model({
-        name: "sponsor-promos"
+        name: "sponsorPromos"
     })
 ], SponsorPromos);
 exports.SponsorPromos = SponsorPromos;

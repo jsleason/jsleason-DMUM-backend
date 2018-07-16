@@ -4,7 +4,7 @@ export declare class Donate extends Entity {
     name: string;
     dancer: string;
     relationId: number;
-    news_email: string;
+    email: string;
     eventId: number;
     amount: number;
     chargeId: string;

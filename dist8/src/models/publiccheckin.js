@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-let Relation = class Relation extends repository_1.Entity {
+let PublicCheckin = class PublicCheckin extends repository_1.Entity {
     getId() {
         return this.id;
     }
@@ -18,20 +18,32 @@ let Relation = class Relation extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
+    }),
+    __metadata("design:type", Number)
+], PublicCheckin.prototype, "eventId", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], PublicCheckin.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], PublicCheckin.prototype, "uniqname", void 0);
+__decorate([
+    repository_1.property({
+        type: "number",
         id: true
     }),
     __metadata("design:type", Number)
-], Relation.prototype, "relationId", void 0);
-__decorate([
-    repository_1.property({
-        type: "string"
-    }),
-    __metadata("design:type", String)
-], Relation.prototype, "type", void 0);
-Relation = __decorate([
+], PublicCheckin.prototype, "checkinId", void 0);
+PublicCheckin = __decorate([
     repository_1.model({
-        name: "relations"
+        name: "publicCheckin"
     })
-], Relation);
-exports.Relation = Relation;
-//# sourceMappingURL=relation.js.map
+], PublicCheckin);
+exports.PublicCheckin = PublicCheckin;
+//# sourceMappingURL=publiccheckin.js.map
