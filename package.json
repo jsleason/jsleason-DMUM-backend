@@ -32,7 +32,8 @@
     "prestart": "npm run build:current",
     "start": "node .",
     "prepublishOnly": "npm run test",
-    "jess": "export GOOGLE_APPLICATION_CREDENTIALS=./credentials.json && npm start"
+    "jess": "export GOOGLE_APPLICATION_CREDENTIALS=./credentials.json && npm start",
+    "live": "node ."
   },
   "repository": {
     "type": "git"
