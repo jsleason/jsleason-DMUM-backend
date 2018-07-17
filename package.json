@@ -33,7 +33,7 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
     "live": "db-migrate up && node .",
-    "jess": "export GOOGLE_APPLICATION_CREDENTIALS=./credentials.json && npm start"
+    "jess": "export GOOGLE_APPLICATION_CREDENTIALS=./credentials.json && export DB_HOST=localhost && export DB_USER=root && export DB_PASSWORD='' && export DB_PORT=3306 && export DB_DATABASE=DMUM && npm start"
   },
   "repository": {
     "type": "git"
@@ -61,6 +61,7 @@
     "db-migrate-mysql": "^1.1.10",
     "google-auth-library": "^0.10.0",
     "google-sheets-wrapper": "^1.0.4",
+    "google-spreadsheet": "^2.0.5",
     "googleapis": "^17.1.0",
     "jsonwebtoken": "^8.3.0",
     "loopback-connector-mysql": "^5.2.0",

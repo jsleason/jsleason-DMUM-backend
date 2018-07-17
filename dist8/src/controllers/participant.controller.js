@@ -27,13 +27,7 @@ let ParticipantController = class ParticipantController {
         return await this.participantRepo.find();
     }
     async getSpecificParticipant_Id(participantId) {
-        try {
-            return await this.participantRepo.find();
-        }
-        catch (e) {
-            throw new rest_1.HttpErrors.NotFound();
-        }
-        // return await this.participantRepo.findById(participantId);
+        return await this.participantRepo.findId(participantId);
     }
     async getSpecificParticipant_name(name) {
         return await this.participantRepo.findIndividual_name(name);
@@ -42,7 +36,7 @@ let ParticipantController = class ParticipantController {
         return await this.participantRepo.findIndividual_uniqname(uniqname);
     }
     async getSpecificParticipant_team(team) {
-        return await this.participantRepo.find({ where: { team } });
+        return await this.participantRepo.findTeam(team);
     }
     async createParticipant(participant) {
         let createdParticipant = await this.participantRepo.create(participant);
@@ -57,9 +51,9 @@ __decorate([
 ], ParticipantController.prototype, "getAllParticipants", null);
 __decorate([
     rest_1.get("/participantId"),
-    __param(0, rest_1.param.query.number("participantId")),
+    __param(0, rest_1.param.query.string("participantId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ParticipantController.prototype, "getSpecificParticipant_Id", null);
 __decorate([
@@ -78,9 +72,9 @@ __decorate([
 ], ParticipantController.prototype, "getSpecificParticipant_uniqname", null);
 __decorate([
     rest_1.get("/teamParticipants"),
-    __param(0, rest_1.param.query.number("team")),
+    __param(0, rest_1.param.query.string("team")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ParticipantController.prototype, "getSpecificParticipant_team", null);
 __decorate([

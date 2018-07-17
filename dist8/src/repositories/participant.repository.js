@@ -16,9 +16,9 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const participant_1 = require("../models/participant");
-const GoogleSheet_1 = require("../google-sheets-wrapper/src/GoogleSheet");
-//import { GoogleSheet } from '../google-sheets-wrapper/node_modules/@types/node/package.json';
-// import * as GoogleSpreadsheet from 'google-spreadsheet';
+//import { GoogleSheet } from '../google-sheets-wrapper/src/GoogleSheet';
+//import * as GoogleSpreadsheet from 'google-spreadsheet';
+const util_1 = require("util");
 // export class ParticipantRepository extends DefaultCrudRepository<
 //   Participant,
 //   typeof Participant.prototype.id
@@ -28,58 +28,144 @@ const GoogleSheet_1 = require("../google-sheets-wrapper/src/GoogleSheet");
 //     super(Participant, datasource);
 //   }
 // }
+// async function accessSpreadsheet() {
+//   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
+//   await promisify(doc.useServiceAccountAuth)(creds);
+//   const info = await promisify(doc.getInfo)();
+//   console.log('Loaded doc: ' + info.title);
+// }
 let ParticipantRepository = class ParticipantRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(participant_1.Participant, datasource);
         this.datasource = datasource;
-        this.dancerSheet = new GoogleSheet_1.GoogleSheet({
-            sheetId: '1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI',
-            range: "'Dancer Master'!A:AN"
-        });
-        this.alumSheet = new GoogleSheet_1.GoogleSheet({
-            sheetId: '1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI',
-            range: "'Alumni Dancer Registration'!A:E"
-        });
-        // this.doc = new GoogleSpreadsheet('1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI');
-        // this.doc.createServiceAccountAuth({
-        //   client_email: "",
-        //   private_key: ""
-        // });
     }
     async findAllAlum() {
-        return await this.alumSheet.getRows();
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const alumSheet = info.worksheets[1];
+        console.log(alumSheet);
+        return await util_1.promisify(alumSheet.getRows)();
+        //return await this.alumSheet.getRows();
     }
     async findAllDancers() {
-        return await this.dancerSheet.getRows();
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const dancerSheet = info.worksheets[2];
+        console.log(dancerSheet);
+        return await util_1.promisify(dancerSheet.getRows)();
     }
     async findIndividual_name(name) {
         let dancerData = await this.findAllDancers();
-        dancerData.forEach((item) => {
-            if (item.full_name == name) {
-                return item;
+        for (const row of dancerData) {
+            console.log(row.fullname);
+            if (row.fullname == name) {
+                console.log(name);
+                return row;
             }
-        });
+        }
+        ;
         let alumData = await this.findAllAlum();
-        alumData.forEach((item) => {
-            if (item.full_name == name) {
-                return item;
+        for (const row of alumData) {
+            if (row.fullname == name) {
+                return row;
             }
-        });
+        }
+        ;
         throw new Error("Participant not found");
     }
     async findIndividual_uniqname(uniqname) {
         let dancerData = await this.findAllDancers();
-        dancerData.forEach((item) => {
-            if (item.uniqname == uniqname) {
-                return item;
+        for (const row of dancerData) {
+            console.log(row.uniqname);
+            if (row.uniqname == uniqname) {
+                console.log(uniqname);
+                return row;
             }
-        });
+        }
+        ;
         let alumData = await this.findAllAlum();
-        alumData.forEach((item) => {
-            if (item.uniqname == uniqname) {
-                return item;
+        for (const row of alumData) {
+            console.log(row.uniqname);
+            if (row.uniqname == uniqname) {
+                console.log(uniqname);
+                return row;
             }
-        });
+        }
+        ;
+        throw new Error("Participant not found");
+    }
+    async findTeam(team) {
+        let dancerData = await this.findAllDancers();
+        let members = Array();
+        for (const row of dancerData) {
+            console.log(row);
+            if (row.orgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.dcteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.dcorgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.notlistedorgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+        }
+        ;
+        let alumData = await this.findAllAlum();
+        for (const row of alumData) {
+            console.log(row.team);
+            if (row.orgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.dcteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.dcorgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+            else if (row.notlistedorgteam == team) {
+                console.log(team);
+                members.push(row);
+            }
+        }
+        ;
+        if (members.length == 0) {
+            throw new Error("No Participants on team");
+        }
+        console.log(members);
+        return members;
+    }
+    async findId(participantId) {
+        this.findIndividual_uniqname(participantId);
+        let dancerData = await this.findAllDancers();
+        for (const row of dancerData) {
+            console.log(row.umidnumber);
+            if (row.umidnumber == participantId) {
+                return row;
+            }
+        }
+        ;
+        let alumData = await this.findAllAlum();
+        for (const row of alumData) {
+            console.log(row.umidnumber);
+            if (row.umidnumber == participantId) {
+                return row;
+            }
+        }
+        ;
         throw new Error("Participant not found");
     }
 };

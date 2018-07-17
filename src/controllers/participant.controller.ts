@@ -22,16 +22,10 @@ export class ParticipantController {
 
   @get("/participantId")
   async getSpecificParticipant_Id(
-    @param.query.number("participantId") participantId: string
+    @param.query.string("participantId") participantId: any
   ): Promise<any> {
 
-    try {
-      return await this.participantRepo.find();
-    } catch (e) {
-      throw new HttpErrors.NotFound();
-    }
-
-    // return await this.participantRepo.findById(participantId);
+    return await this.participantRepo.findId(participantId);
 
   }
 
@@ -53,9 +47,9 @@ export class ParticipantController {
 
   @get("/teamParticipants")
   async getSpecificParticipant_team(
-    @param.query.number("team") team: number
+    @param.query.string("team") team: string
   ): Promise<Array<Participant>> {
-    return await this.participantRepo.find({ where: { team } });
+    return await this.participantRepo.findTeam(team);
   }
 
   @post("/newParticipants")
@@ -67,13 +61,5 @@ export class ParticipantController {
     return createdParticipant;
 
   }
-
-  // sign({
-  //   user: user
-  // }, 'shh', {
-  //   issuer: 'auth.ix.co.za',
-  //   audience: 'ix.co.za'
-  // });
-
 
 }
