@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca5ad763-5e06-474f-91fd-133308c12e57" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/credentials.json" afterPath="$PROJECT_DIR$/credentials.json" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.d.ts" afterPath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.js" afterPath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.js" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.js.map" afterPath="$PROJECT_DIR$/dist8/src/controllers/participant.controller.js.map" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.d.ts" afterPath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.js" afterPath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.js" />
-      <change beforePath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.js.map" afterPath="$PROJECT_DIR$/dist8/src/repositories/participant.repository.js.map" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/participant.controller.ts" afterPath="$PROJECT_DIR$/src/controllers/participant.controller.ts" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/participant.repository.ts" afterPath="$PROJECT_DIR$/src/repositories/participant.repository.ts" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,18 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="checkin.controller.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controllers/checkin.controller.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,7 +22,7 @@
       <projects_view />
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="240" />
     <option name="y" value="43" />
     <option name="width" value="1030" />
@@ -213,7 +192,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="240" y="43" width="1030" height="712" extended-state="1" />
+    <frame x="240" y="43" width="1030" height="712" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
