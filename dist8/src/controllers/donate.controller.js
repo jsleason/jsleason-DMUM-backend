@@ -13,7 +13,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
-const donate_1 = require("../models/donate");
 const repository_1 = require("@loopback/repository");
 const donate_repository_1 = require("../repositories/donate.repository");
 var stripe = require("stripe")("sk_test_24DOtrdc3BkC9qL4kO0Jp4cR");
@@ -51,12 +50,13 @@ let DonateController = class DonateController {
         // throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async createDonate(donate) {
-        const charge = stripe.charges.create({
+        const charge = await stripe.charges.create({
             amount: donate.amount,
             currency: 'usd',
-            source: 'token',
+            source: 'tok_visa',
         });
-        let chargeId = charge.id;
+        console.log('charge created!');
+        donate.chargeId = charge.id;
         let createdDonate = await this.donateRepo.create(donate);
         return createdDonate;
     }
@@ -103,10 +103,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DonateController.prototype, "getEventDonations", null);
 __decorate([
-    rest_1.post("newDonation"),
+    rest_1.post("/newDonation"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [donate_1.Donate]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], DonateController.prototype, "createDonate", null);
 DonateController = __decorate([

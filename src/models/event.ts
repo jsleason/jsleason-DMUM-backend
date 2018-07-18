@@ -37,6 +37,11 @@ export class Event extends Entity {
   })
   description: string;
 
+  @property({
+    type: "string"
+  })
+  active: string;
+
   getId() {
     return this.id;
   }

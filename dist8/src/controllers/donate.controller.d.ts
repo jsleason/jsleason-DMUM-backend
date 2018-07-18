@@ -9,5 +9,5 @@ export declare class DonateController {
     getDonation_toDancer(dancer: string): Promise<Donate[]>;
     getDonation_relation(relationId: number): Promise<Donate[]>;
     getEventDonations(eventId: number): Promise<Array<any>>;
-    createDonate(donate: Donate): Promise<Donate>;
+    createDonate(donate: Partial<Donate>): Promise<Donate>;
 }

@@ -73,16 +73,17 @@ export class DonateController {
     // throw new HttpErrors.NotFound("Sorry, event not found");
   }
 
-  @post("newDonation")
+  @post("/newDonation")
   async createDonate(
-    @requestBody() donate: Donate
+    @requestBody() donate: Partial<Donate>
   ): Promise<Donate> {
-    const charge = stripe.charges.create({
+    const charge = await stripe.charges.create({
       amount: donate.amount,
       currency: 'usd',
-      source: 'token',
+      source: 'tok_visa',
     });
-    let chargeId = charge.id;
+    console.log('charge created!')
+    donate.chargeId = charge.id;
     let createdDonate = await this.donateRepo.create(donate);
     return createdDonate;
   }

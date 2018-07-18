@@ -6,5 +6,6 @@ export declare class Event extends Entity {
     time_range: string;
     location: string;
     description: string;
+    active: string;
     getId(): any;
 }
