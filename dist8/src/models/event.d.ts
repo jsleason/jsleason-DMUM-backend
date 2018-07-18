@@ -7,5 +7,6 @@ export declare class Event extends Entity {
     location: string;
     description: string;
     active: string;
+    featured: string;
     getId(): any;
 }

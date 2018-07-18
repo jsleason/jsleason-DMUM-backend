@@ -25,8 +25,12 @@ let EventController = class EventController {
     async getAllEvents() {
         return await this.eventRepo.find();
     }
-    async getfeatured(active) {
-        return await this.eventRepo.findOne({ where: { active } });
+    async getFeatured() {
+        return await this.eventRepo.find({ where: { featured: "Y" } });
+        //throw new HttpErrors.NotFound("Sorry, event not found");
+    }
+    async getActive() {
+        return await this.eventRepo.find({ where: { active: "Y" } });
         //throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async getSpecificEvent_Id(eventId) {
@@ -50,11 +54,16 @@ __decorate([
 ], EventController.prototype, "getAllEvents", null);
 __decorate([
     rest_1.get("/featuredEvents"),
-    __param(0, rest_1.param.query.string("active")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], EventController.prototype, "getfeatured", null);
+], EventController.prototype, "getFeatured", null);
+__decorate([
+    rest_1.get("/activeEvents"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], EventController.prototype, "getActive", null);
 __decorate([
     rest_1.get("/eventId"),
     __param(0, rest_1.param.query.number("eventId")),

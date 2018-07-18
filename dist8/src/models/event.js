@@ -58,6 +58,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Event.prototype, "active", void 0);
+__decorate([
+    repository_1.property({
+        type: "string"
+    }),
+    __metadata("design:type", String)
+], Event.prototype, "featured", void 0);
 Event = __decorate([
     repository_1.model({
         name: "events"

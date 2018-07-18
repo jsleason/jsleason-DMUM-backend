@@ -20,10 +20,17 @@ export class EventController {
   }
 
   @get("/featuredEvents")
-  async getfeatured(
-    @param.query.string("active") active: string
-  ): Promise<any> {
-    return await this.eventRepo.findOne({ where: { active } });
+  async getFeatured(
+  ): Promise<Array<any>> {
+    return await this.eventRepo.find({ where: { featured: "Y" } });
+
+    //throw new HttpErrors.NotFound("Sorry, event not found");
+  }
+
+  @get("/activeEvents")
+  async getActive(
+  ): Promise<Array<any>> {
+    return await this.eventRepo.find({ where: { active: "Y" } });
 
     //throw new HttpErrors.NotFound("Sorry, event not found");
   }
