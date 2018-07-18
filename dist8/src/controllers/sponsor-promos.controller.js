@@ -23,7 +23,11 @@ let SponsorPromosController = class SponsorPromosController {
         this.sponsorPromosRepo = sponsorPromosRepo;
     }
     async getAllPromos() {
-        return await this.sponsorPromosRepo.find();
+        let arr = await this.sponsorPromosRepo.find();
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return arr;
     }
     async getSpecificPromo_Id(sponsorPromoId) {
         return await this.sponsorPromosRepo.findOne({ where: { sponsorPromoId } });

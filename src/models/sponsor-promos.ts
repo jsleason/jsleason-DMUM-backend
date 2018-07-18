@@ -27,6 +27,11 @@ export class SponsorPromos extends Entity {
   })
   code: string;
 
+  @property({
+    type: "string"
+  })
+  imgsrc: string;
+
   getId() {
     return this.id;
   }

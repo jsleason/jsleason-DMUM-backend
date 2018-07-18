@@ -40,6 +40,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], SponsorPromos.prototype, "code", void 0);
+__decorate([
+    repository_1.property({
+        type: "string"
+    }),
+    __metadata("design:type", String)
+], SponsorPromos.prototype, "imgsrc", void 0);
 SponsorPromos = __decorate([
     repository_1.model({
         name: "sponsorPromos"

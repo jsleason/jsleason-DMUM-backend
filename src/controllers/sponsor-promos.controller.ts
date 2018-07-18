@@ -16,7 +16,11 @@ export class SponsorPromosController {
   @get("/allSponsorPromos")
   async getAllPromos(
   ): Promise<Array<any>> {
-    return await this.sponsorPromosRepo.find();
+    let arr = await this.sponsorPromosRepo.find();
+    if (arr.length == 0) {
+      console.log("No Current Promotions");
+    }
+    return arr;
   }
 
   @get("/sponsorPromoId")

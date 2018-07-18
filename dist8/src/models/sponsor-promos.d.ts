@@ -4,5 +4,6 @@ export declare class SponsorPromos extends Entity {
     title: string;
     link: string;
     code: string;
+    imgsrc: string;
     getId(): any;
 }

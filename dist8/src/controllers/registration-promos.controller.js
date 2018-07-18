@@ -23,7 +23,11 @@ let RegistrationPromosController = class RegistrationPromosController {
         this.registrationPromosRepo = registrationPromosRepo;
     }
     async getAllPromos() {
-        return await this.registrationPromosRepo.find();
+        let arr = await this.registrationPromosRepo.find();
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return arr;
     }
     async getSpecificPromo_Id(registrationPromoId) {
         return await this.registrationPromosRepo.findOne({ where: { registrationPromoId } });

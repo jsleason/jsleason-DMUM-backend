@@ -75,7 +75,7 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
             }
         }
         ;
-        throw new Error("Participant not found");
+        return false;
     }
     async findIndividual_uniqname(uniqname) {
         let dancerData = await this.findAllDancers();
@@ -96,7 +96,7 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
             }
         }
         ;
-        throw new Error("Participant not found");
+        return false;
     }
     async findTeam(team) {
         let dancerData = await this.findAllDancers();
@@ -142,9 +142,9 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
             }
         }
         ;
-        if (members.length == 0) {
-            throw new Error("No Participants on team");
-        }
+        // if (members.length == 0) {
+        //   throw new Error("No Participants on team");
+        // }
         console.log(members);
         return members;
     }
@@ -166,7 +166,7 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
             }
         }
         ;
-        throw new Error("Participant not found");
+        return false;
     }
 };
 ParticipantRepository = __decorate([

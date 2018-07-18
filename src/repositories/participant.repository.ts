@@ -75,7 +75,7 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
       }
     };
 
-    throw new Error("Participant not found");
+    return false;
   }
 
   async findIndividual_uniqname(uniqname: string) {
@@ -99,7 +99,7 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
       }
     };
 
-    throw new Error("Participant not found");
+    return false;
   }
 
 
@@ -149,9 +149,9 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
       }
     };
 
-    if (members.length == 0) {
-      throw new Error("No Participants on team");
-    }
+    // if (members.length == 0) {
+    //   throw new Error("No Participants on team");
+    // }
     console.log(members);
     return members;
   }
@@ -177,7 +177,7 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
       }
     };
 
-    throw new Error("Participant not found");
+    return false;
   }
 
 }
