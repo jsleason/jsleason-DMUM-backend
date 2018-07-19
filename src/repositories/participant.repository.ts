@@ -6,6 +6,7 @@ import { Participant } from '../models/participant';
 //import * as GoogleSpreadsheet from 'google-spreadsheet';
 
 import { promisify } from 'util';
+import { HttpErrors } from '@loopback/rest';
 
 // export class ParticipantRepository extends DefaultCrudRepository<
 //   Participant,
@@ -41,7 +42,6 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     await promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'))
     const info = await promisify(doc.getInfo)();
     const alumSheet = info.worksheets[1];
-    console.log(alumSheet);
     return await promisify(alumSheet.getRows)();
     //return await this.alumSheet.getRows();
   }
@@ -52,7 +52,6 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     await promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'))
     const info = await promisify(doc.getInfo)();
     const dancerSheet = info.worksheets[2];
-    console.log(dancerSheet);
     return await promisify(dancerSheet.getRows)();
   }
 
@@ -60,9 +59,7 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     let dancerData = await this.findAllDancers();
 
     for (const row of dancerData) {
-      console.log(row.fullname)
       if (row.fullname == name) {
-        console.log(name);
         return row;
       }
     };
@@ -75,16 +72,14 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
       }
     };
 
-    return false;
+    return { success: false };
   }
 
   async findIndividual_uniqname(uniqname: string) {
     let dancerData = await this.findAllDancers();
 
     for (const row of dancerData) {
-      console.log(row.uniqname)
       if (row.uniqname == uniqname) {
-        console.log(uniqname);
         return row;
       }
     };
@@ -92,14 +87,12 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     let alumData = await this.findAllAlum();
 
     for (const row of alumData) {
-      console.log(row.uniqname)
       if (row.uniqname == uniqname) {
-        console.log(uniqname);
         return row;
       }
     };
 
-    return false;
+    throw new HttpErrors.InternalServerError();
   }
 
 
@@ -110,19 +103,15 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     for (const row of dancerData) {
       console.log(row)
       if (row.orgteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.dcteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.dcorgteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.notlistedorgteam == team) {
-        console.log(team);
         members.push(row);
       }
     };
@@ -132,19 +121,15 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     for (const row of alumData) {
       console.log(row.team)
       if (row.orgteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.dcteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.dcorgteam == team) {
-        console.log(team);
         members.push(row);
       }
       else if (row.notlistedorgteam == team) {
-        console.log(team);
         members.push(row);
       }
     };
@@ -162,7 +147,6 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     let dancerData = await this.findAllDancers();
 
     for (const row of dancerData) {
-      console.log(row.umidnumber)
       if (row.umidnumber == participantId) {
         return row;
       }
@@ -171,13 +155,12 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     let alumData = await this.findAllAlum();
 
     for (const row of alumData) {
-      console.log(row.umidnumber)
       if (row.umidnumber == participantId) {
         return row;
       }
     };
 
-    return false;
+    return { success: false };
   }
 
 }

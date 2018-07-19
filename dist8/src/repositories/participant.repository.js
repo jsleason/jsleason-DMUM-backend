@@ -19,6 +19,7 @@ const participant_1 = require("../models/participant");
 //import { GoogleSheet } from '../google-sheets-wrapper/src/GoogleSheet';
 //import * as GoogleSpreadsheet from 'google-spreadsheet';
 const util_1 = require("util");
+const rest_1 = require("@loopback/rest");
 // export class ParticipantRepository extends DefaultCrudRepository<
 //   Participant,
 //   typeof Participant.prototype.id
@@ -45,7 +46,6 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         await util_1.promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'));
         const info = await util_1.promisify(doc.getInfo)();
         const alumSheet = info.worksheets[1];
-        console.log(alumSheet);
         return await util_1.promisify(alumSheet.getRows)();
         //return await this.alumSheet.getRows();
     }
@@ -55,15 +55,12 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         await util_1.promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'));
         const info = await util_1.promisify(doc.getInfo)();
         const dancerSheet = info.worksheets[2];
-        console.log(dancerSheet);
         return await util_1.promisify(dancerSheet.getRows)();
     }
     async findIndividual_name(name) {
         let dancerData = await this.findAllDancers();
         for (const row of dancerData) {
-            console.log(row.fullname);
             if (row.fullname == name) {
-                console.log(name);
                 return row;
             }
         }
@@ -75,28 +72,24 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
             }
         }
         ;
-        return false;
+        return { success: false };
     }
     async findIndividual_uniqname(uniqname) {
         let dancerData = await this.findAllDancers();
         for (const row of dancerData) {
-            console.log(row.uniqname);
             if (row.uniqname == uniqname) {
-                console.log(uniqname);
                 return row;
             }
         }
         ;
         let alumData = await this.findAllAlum();
         for (const row of alumData) {
-            console.log(row.uniqname);
             if (row.uniqname == uniqname) {
-                console.log(uniqname);
                 return row;
             }
         }
         ;
-        return false;
+        throw new rest_1.HttpErrors.InternalServerError();
     }
     async findTeam(team) {
         let dancerData = await this.findAllDancers();
@@ -104,19 +97,15 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         for (const row of dancerData) {
             console.log(row);
             if (row.orgteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.dcteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.dcorgteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.notlistedorgteam == team) {
-                console.log(team);
                 members.push(row);
             }
         }
@@ -125,19 +114,15 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         for (const row of alumData) {
             console.log(row.team);
             if (row.orgteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.dcteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.dcorgteam == team) {
-                console.log(team);
                 members.push(row);
             }
             else if (row.notlistedorgteam == team) {
-                console.log(team);
                 members.push(row);
             }
         }
@@ -152,7 +137,6 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         this.findIndividual_uniqname(participantId);
         let dancerData = await this.findAllDancers();
         for (const row of dancerData) {
-            console.log(row.umidnumber);
             if (row.umidnumber == participantId) {
                 return row;
             }
@@ -160,13 +144,12 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         ;
         let alumData = await this.findAllAlum();
         for (const row of alumData) {
-            console.log(row.umidnumber);
             if (row.umidnumber == participantId) {
                 return row;
             }
         }
         ;
-        return false;
+        return { success: false };
     }
 };
 ParticipantRepository = __decorate([
