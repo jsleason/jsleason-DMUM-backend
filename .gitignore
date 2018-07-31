@@ -53,6 +53,7 @@ plugins/ios.json
 www/
 $RECYCLE.BIN/
 ./src/@firebase
+credentials.json
 
 .DS_Store
 Thumbs.db

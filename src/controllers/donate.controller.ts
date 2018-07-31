@@ -2,7 +2,7 @@ import { get, param, HttpErrors, post, requestBody } from "@loopback/rest";
 import { Donate } from "../models/donate";
 import { repository } from "@loopback/repository";
 import { DonateRepository } from "../repositories/donate.repository";
-var stripe = require("stripe")("sk_live_aFYYUtm6rzlRghEUycjKGqXu");
+var stripe = require("stripe")("KEY");
 
 // Uncomment these imports to begin using these cool features!
 
