@@ -55,6 +55,18 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
     return await promisify(dancerSheet.getRows)();
   }
 
+  async findUniqnameColumn() {
+    const GoogleSpreadsheet = require('google-spreadsheet');
+    const doc = new GoogleSpreadsheet('1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI');
+    await promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'))
+    const info = await promisify(doc.getInfo)();
+    const dancerSheet = info.worksheets[2];
+    return await promisify(dancerSheet.getRows)({
+      'min-col': 4,
+      'max-col': 4,
+    })
+  }
+
   async findIndividual_name(name: string) {
     let dancerData = await this.findAllDancers();
 
@@ -76,7 +88,7 @@ export class ParticipantRepository extends DefaultCrudRepository<Participant, ty
   }
 
   async findIndividual_uniqname(uniqname: string) {
-    let dancerData = await this.findAllDancers();
+    let dancerData = await this.findUniqnameColumn();
 
     for (const row of dancerData) {
       if (row.uniqname == uniqname) {

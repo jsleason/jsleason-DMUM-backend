@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const donate_repository_1 = require("../repositories/donate.repository");
-var stripe = require("stripe")("sk_test_24DOtrdc3BkC9qL4kO0Jp4cR");
+var stripe = require("stripe")("sk_live_aFYYUtm6rzlRghEUycjKGqXu");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let DonateController = class DonateController {

@@ -57,6 +57,17 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         const dancerSheet = info.worksheets[2];
         return await util_1.promisify(dancerSheet.getRows)();
     }
+    async findUniqnameColumn() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('1GryksTDVGcPv_gI3SjMNQTdUgDmQfJUO9WnWnN1OhKI');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../service-account.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const dancerSheet = info.worksheets[2];
+        return await util_1.promisify(dancerSheet.getRows)({
+            'min-col': 4,
+            'max-col': 4,
+        });
+    }
     async findIndividual_name(name) {
         let dancerData = await this.findAllDancers();
         for (const row of dancerData) {
@@ -75,7 +86,7 @@ let ParticipantRepository = class ParticipantRepository extends repository_1.Def
         return { success: false };
     }
     async findIndividual_uniqname(uniqname) {
-        let dancerData = await this.findAllDancers();
+        let dancerData = await this.findUniqnameColumn();
         for (const row of dancerData) {
             if (row.uniqname == uniqname) {
                 return row;

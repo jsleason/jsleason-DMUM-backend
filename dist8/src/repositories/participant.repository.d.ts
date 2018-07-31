@@ -6,6 +6,7 @@ export declare class ParticipantRepository extends DefaultCrudRepository<Partici
     constructor(datasource: DataSource);
     findAllAlum(): Promise<any>;
     findAllDancers(): Promise<any>;
+    findUniqnameColumn(): Promise<any>;
     findIndividual_name(name: string): Promise<any>;
     findIndividual_uniqname(uniqname: string): Promise<any>;
     findTeam(team: any): Promise<any[]>;
