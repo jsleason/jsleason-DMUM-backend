@@ -16,14 +16,14 @@ export class ProfileController {
   @get("/allProfiles")
   async getAllProfiles(
   ): Promise<Array<any>> {
-    return await this.profileRepo.find();
+    return await this.profileRepo.findAllProfiles();
   }
 
   @get("/eventProfileId")
   async getSpecificEventProfile(
     @param.query.number("eventId") eventId: number
   ): Promise<any> {
-    try { return await this.profileRepo.findOne({ where: { eventId: eventId } }); }
+    try { return await this.profileRepo.findEventProfile(eventId); }
     catch (err) {
       throw new HttpErrors.NotFound('Profile not found');
     }

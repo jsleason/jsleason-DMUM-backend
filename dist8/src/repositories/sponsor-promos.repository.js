@@ -16,10 +16,39 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const sponsor_promos_1 = require("../models/sponsor-promos");
+const util_1 = require("util");
 let SponsorPromosRepository = class SponsorPromosRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(sponsor_promos_1.SponsorPromos, datasource);
         this.datasource = datasource;
+    }
+    async findAllSPromos() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const checkinSheet = info.worksheets[7];
+        return await util_1.promisify(checkinSheet.getRows)();
+    }
+    async findSPromoId(Id) {
+        let data = await this.findAllSPromos();
+        for (const row of data) {
+            if (row.sponsorpromoid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async findSPromoTitle(Id) {
+        let data = await this.findAllSPromos();
+        for (const row of data) {
+            if (row.title == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
     }
 };
 SponsorPromosRepository = __decorate([

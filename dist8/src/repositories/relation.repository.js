@@ -16,10 +16,39 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const relation_1 = require("../models/relation");
+const util_1 = require("util");
 let RelationRepository = class RelationRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(relation_1.Relation, datasource);
         this.datasource = datasource;
+    }
+    async findAllRelations() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const checkinSheet = info.worksheets[6];
+        return await util_1.promisify(checkinSheet.getRows)();
+    }
+    async findRelationId(Id) {
+        let data = await this.findAllRelations();
+        for (const row of data) {
+            if (row.relationid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async findRelationType(Id) {
+        let data = await this.findAllRelations();
+        for (const row of data) {
+            if (row.type == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
     }
 };
 RelationRepository = __decorate([

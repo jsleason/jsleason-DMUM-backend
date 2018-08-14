@@ -24,7 +24,9 @@ let ParticipantController = class ParticipantController {
         this.participantRepo = participantRepo;
     }
     async getAllParticipants() {
-        return await this.participantRepo.find();
+        let dancerData = await this.participantRepo.findAllDancers();
+        let alumData = await this.participantRepo.findAllAlum();
+        return dancerData + alumData;
     }
     async getSpecificParticipant_Id(participantId) {
         return await this.participantRepo.findId(participantId);

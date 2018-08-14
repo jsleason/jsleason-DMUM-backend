@@ -23,22 +23,22 @@ let EventController = class EventController {
         this.eventRepo = eventRepo;
     }
     async getAllEvents() {
-        return await this.eventRepo.find();
+        return await this.eventRepo.findAllEvents();
     }
-    async getFeatured() {
-        return await this.eventRepo.find({ where: { featured: "Y" } });
+    async getFeatured(featured) {
+        return await this.eventRepo.findFeaturedEvents("Y");
         //throw new HttpErrors.NotFound("Sorry, event not found");
     }
-    async getActive() {
-        return await this.eventRepo.find({ where: { active: "Y" } });
+    async getActive(active) {
+        return await this.eventRepo.findActiveEvents("Y");
         //throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async getSpecificEvent_Id(eventId) {
-        return await this.eventRepo.findOne({ where: { eventId } });
+        return await this.eventRepo.findEventId(eventId);
         // throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async getSpecificEvent_name(name) {
-        return await this.eventRepo.findOne({ where: { name } });
+        return await this.eventRepo.findEventName(name);
         //throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async createEvent(event) {
@@ -54,14 +54,16 @@ __decorate([
 ], EventController.prototype, "getAllEvents", null);
 __decorate([
     rest_1.get("/featuredEvents"),
+    __param(0, rest_1.param.query.string("featured")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "getFeatured", null);
 __decorate([
     rest_1.get("/activeEvents"),
+    __param(0, rest_1.param.query.string("active")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "getActive", null);
 __decorate([

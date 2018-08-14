@@ -2,31 +2,9 @@ import { DefaultCrudRepository, EntityCrudRepository, CrudRepositoryImpl } from 
 import { inject } from '@loopback/core';
 import { DataSource, Options } from 'loopback-datasource-juggler';
 import { Participant } from '../models/participant';
-//import { GoogleSheet } from '../google-sheets-wrapper/src/GoogleSheet';
-//import * as GoogleSpreadsheet from 'google-spreadsheet';
-
 import { promisify } from 'util';
 import { HttpErrors } from '@loopback/rest';
 
-// export class ParticipantRepository extends DefaultCrudRepository<
-//   Participant,
-//   typeof Participant.prototype.id
-//   >
-
-// {
-
-//   constructor(@inject('datasources.db') protected datasource: DataSource) {
-//     super(Participant, datasource);
-//   }
-// }
-
-// async function accessSpreadsheet() {
-//   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
-//   await promisify(doc.useServiceAccountAuth)(creds);
-//   const info = await promisify(doc.getInfo)();
-//   console.log('Loaded doc: ' + info.title);
-
-// }
 
 export class ParticipantRepository extends DefaultCrudRepository<Participant, typeof Participant.prototype.id> {
 

@@ -16,10 +16,29 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const profile_1 = require("../models/profile");
+const util_1 = require("util");
 let ProfileRepository = class ProfileRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(profile_1.Profile, datasource);
         this.datasource = datasource;
+    }
+    async findAllProfiles() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const profileSheet = info.worksheets[3];
+        return await util_1.promisify(profileSheet.getRows)();
+    }
+    async findEventProfile(Id) {
+        let data = await this.findAllProfiles();
+        for (const row of data) {
+            if (row.eventid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
     }
 };
 ProfileRepository = __decorate([

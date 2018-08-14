@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const donate_repository_1 = require("../repositories/donate.repository");
-var stripe = require("stripe")("sk_live_aFYYUtm6rzlRghEUycjKGqXu");
+var stripe = require("stripe")("KEY");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let DonateController = class DonateController {
@@ -23,30 +23,30 @@ let DonateController = class DonateController {
         this.donateRepo = donateRepo;
     }
     async getAllDonations() {
-        return await this.donateRepo.find();
+        return await this.donateRepo.findAllDonations();
     }
     async getSpecificDonation(donateId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.donateRepo.findById(donateId);
+        return await this.donateRepo.findDonateId(donateId);
         //throw new HttpErrors.NotFound("Sorry, donation not found");
     }
     async getDonations_byName(name) {
         // check if a Check In corresponding to checkingId exists
-        return await this.donateRepo.find({ where: { name } });
+        return await this.donateRepo.findNameDonation(name);
         //throw new HttpErrors.NotFound("Sorry, donation not found");
     }
     async getDonation_toDancer(dancer) {
         // check if a Check In corresponding to checkingId exists
-        return await this.donateRepo.find({ where: { dancer } });
+        return await this.donateRepo.findDancerDonation(dancer);
         // throw new HttpErrors.NotFound("Sorry, donation not found");
     }
     async getDonation_relation(relationId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.donateRepo.find({ where: { relationId } });
+        return await this.donateRepo.findRelationDonation(relationId);
         //throw new HttpErrors.NotFound("Sorry, donation not found");
     }
     async getEventDonations(eventId) {
-        return await this.donateRepo.find({ where: { eventId } });
+        return await this.donateRepo.findEventDonation(eventId);
         // throw new HttpErrors.NotFound("Sorry, event not found");
     }
     async createDonate(donate) {

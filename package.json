@@ -65,6 +65,7 @@
     "googleapis": "^17.1.0",
     "jsonwebtoken": "^8.3.0",
     "loopback-connector-mysql": "^5.2.0",
+    "mysql": "github:mysqljs/mysql",
     "stripe": "^6.2.1"
   },
   "devDependencies": {

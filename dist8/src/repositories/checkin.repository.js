@@ -16,10 +16,61 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const checkin_1 = require("../models/checkin");
+const util_1 = require("util");
 let CheckinRepository = class CheckinRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(checkin_1.Checkin, datasource);
         this.datasource = datasource;
+    }
+    async findAllCheckin() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const checkinSheet = info.worksheets[0];
+        return await util_1.promisify(checkinSheet.getRows)();
+    }
+    async findCheckinId(Id) {
+        let data = await this.findAllCheckin();
+        for (const row of data) {
+            if (row.checkinid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async findParticipantCheckin(Id) {
+        let data = await this.findAllCheckin();
+        for (const row of data) {
+            if (row.participantid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async findEventCheckin(Id) {
+        let data = await this.findAllCheckin();
+        for (const row of data) {
+            if (row.eventid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async createCheckin(checkin) {
+        let data = await this.findAllCheckin();
+        for (const row of data) {
+            if (!row.value) {
+                row.eventid = checkin.eventId;
+                row.participantid = checkin.participantId;
+                break;
+            }
+            break;
+        }
+        return data;
     }
 };
 CheckinRepository = __decorate([

@@ -17,7 +17,7 @@ export class RelationController {
   @get("/allRelations")
   async getAllRelations(
   ): Promise<Array<any>> {
-    return await this.relationRepo.find();
+    return await this.relationRepo.findAllRelations();
   }
 
   @get("/relations/{relationId}")
@@ -26,16 +26,8 @@ export class RelationController {
   ): Promise<Relation> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.relationRepo.findById(relationId);
-    // if (checkinId == "A") {
-    //   return "ABC";
-    // }
+    return await this.relationRepo.findRelationId(relationId);
 
-    // if (checkinId == "B") {
-    //   return "BCD";
-    // }
-
-    // throw new HttpErrors.NotFound("Sorry, relation not found");
   }
 
   @get("/relationType")
@@ -44,16 +36,7 @@ export class RelationController {
   ): Promise<Relation[]> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.relationRepo.find({ where: { type } });
-    // if (checkinId == "A") {
-    //   return "ABC";
-    // }
-
-    // if (checkinId == "B") {
-    //   return "BCD";
-    // }
-
-    // throw new HttpErrors.NotFound("Sorry, relation not found");
+    return await this.relationRepo.findRelationType(type);
   }
 
   @post("/newRelation")

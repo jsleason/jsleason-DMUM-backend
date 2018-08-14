@@ -16,21 +16,21 @@ export class TeamController {
   @get("/allTeams")
   async getAllTeams(
   ): Promise<Array<any>> {
-    return await this.teamRepo.find();
+    return await this.teamRepo.findAllTeams();
   }
 
   @get("/teamId")
   async getSpecificTeam_Id(
     @param.query.number("teamId") teamId: number
   ): Promise<any> {
-    return await this.teamRepo.findOne({ where: { teamId } });
+    return await this.teamRepo.findTeamId(teamId);
   }
 
   @get("/teamName")
   async getSpecificTeam_Name(
     @param.query.string("name") name: string
   ): Promise<any> {
-    return await this.teamRepo.find({ where: { name } });
+    return await this.teamRepo.findTeamName(name);
   }
 
   @post("/newTeam")

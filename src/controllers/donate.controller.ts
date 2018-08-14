@@ -17,7 +17,7 @@ export class DonateController {
   @get("/allDonations")
   async getAllDonations(
   ): Promise<Array<any>> {
-    return await this.donateRepo.find();
+    return await this.donateRepo.findAllDonations();
   }
 
   @get("/donationId")
@@ -26,7 +26,7 @@ export class DonateController {
   ): Promise<Donate> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.donateRepo.findById(donateId);
+    return await this.donateRepo.findDonateId(donateId);
 
     //throw new HttpErrors.NotFound("Sorry, donation not found");
   }
@@ -37,7 +37,7 @@ export class DonateController {
   ): Promise<Donate[]> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.donateRepo.find({ where: { name } });
+    return await this.donateRepo.findNameDonation(name);
 
     //throw new HttpErrors.NotFound("Sorry, donation not found");
   }
@@ -48,7 +48,7 @@ export class DonateController {
   ): Promise<Donate[]> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.donateRepo.find({ where: { dancer } });
+    return await this.donateRepo.findDancerDonation(dancer);
 
     // throw new HttpErrors.NotFound("Sorry, donation not found");
   }
@@ -59,7 +59,7 @@ export class DonateController {
   ): Promise<Donate[]> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.donateRepo.find({ where: { relationId } });
+    return await this.donateRepo.findRelationDonation(relationId);
 
     //throw new HttpErrors.NotFound("Sorry, donation not found");
   }
@@ -68,7 +68,7 @@ export class DonateController {
   async getEventDonations(
     @param.query.number("eventId") eventId: number
   ): Promise<Array<any>> {
-    return await this.donateRepo.find({ where: { eventId } });
+    return await this.donateRepo.findEventDonation(eventId);
 
     // throw new HttpErrors.NotFound("Sorry, event not found");
   }

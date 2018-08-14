@@ -23,29 +23,15 @@ let RelationController = class RelationController {
         this.relationRepo = relationRepo;
     }
     async getAllRelations() {
-        return await this.relationRepo.find();
+        return await this.relationRepo.findAllRelations();
     }
     async getSpecificRelation(relationId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.relationRepo.findById(relationId);
-        // if (checkinId == "A") {
-        //   return "ABC";
-        // }
-        // if (checkinId == "B") {
-        //   return "BCD";
-        // }
-        // throw new HttpErrors.NotFound("Sorry, relation not found");
+        return await this.relationRepo.findRelationId(relationId);
     }
     async getRelation_type(type) {
         // check if a Check In corresponding to checkingId exists
-        return await this.relationRepo.find({ where: { type } });
-        // if (checkinId == "A") {
-        //   return "ABC";
-        // }
-        // if (checkinId == "B") {
-        //   return "BCD";
-        // }
-        // throw new HttpErrors.NotFound("Sorry, relation not found");
+        return await this.relationRepo.findRelationType(type);
     }
     async createRelation(relation) {
         let createdRelation = await this.relationRepo.create(relation);

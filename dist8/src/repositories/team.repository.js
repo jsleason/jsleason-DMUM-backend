@@ -16,10 +16,39 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const team_1 = require("../models/team");
+const util_1 = require("util");
 let TeamRepository = class TeamRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(team_1.Teams, datasource);
         this.datasource = datasource;
+    }
+    async findAllTeams() {
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const checkinSheet = info.worksheets[8];
+        return await util_1.promisify(checkinSheet.getRows)();
+    }
+    async findTeamName(Id) {
+        let data = await this.findAllTeams();
+        for (const row of data) {
+            if (row.name == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
+    }
+    async findTeamId(Id) {
+        let data = await this.findAllTeams();
+        for (const row of data) {
+            if (row.teamid == Id) {
+                return row;
+            }
+        }
+        ;
+        return { success: false };
     }
 };
 TeamRepository = __decorate([

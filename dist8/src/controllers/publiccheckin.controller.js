@@ -26,29 +26,22 @@ let PublicCheckinController = class PublicCheckinController {
         this.eventRepo = eventRepo;
     }
     async getAllCheckins() {
-        return await this.publicCheckinRepo.find();
+        return await this.publicCheckinRepo.findAllPublicCheckin();
     }
     async getSpecificCheckin_Id(checkinId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.publicCheckinRepo.findById(checkinId);
-        // if (checkinId == "A") {
-        //   return "ABC";
-        // }
-        // if (checkinId == "B") {
-        //   return "BCD";
-        // }
-        // throw new HttpErrors.NotFound("Sorry, checkin not found");
+        return await this.publicCheckinRepo.findPublicCheckinId(checkinId);
     }
     async getParticipantCheckins(participantId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.publicCheckinRepo.find({ where: { participantId } });
+        return await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
         //throw new HttpErrors.NotFound("Sorry, checkin not found");
     }
     async getEventCheckIns(eventId) {
         // called like /checkins?eventId=<input>
         // TODO: check if a Check In corresponding to checkingId exists
         // Get all checkin corresponding to a specific event ID
-        return await this.publicCheckinRepo.find({ where: { eventId } });
+        return await this.publicCheckinRepo.findEventPublicCheckin(eventId);
         // throw new HttpErrors.NotFound("Sorry, checkin not found");
     }
     async createCheckin(publicCheckin) {

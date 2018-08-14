@@ -16,7 +16,7 @@ export class SponsorPromosController {
   @get("/allSponsorPromos")
   async getAllPromos(
   ): Promise<Array<any>> {
-    let arr = await this.sponsorPromosRepo.find();
+    let arr = await this.sponsorPromosRepo.findAllSPromos();
     if (arr.length == 0) {
       console.log("No Current Promotions");
     }
@@ -27,14 +27,14 @@ export class SponsorPromosController {
   async getSpecificPromo_Id(
     @param.query.number("sponsorPromoId") sponsorPromoId: number
   ): Promise<any> {
-    return await this.sponsorPromosRepo.findOne({ where: { sponsorPromoId } });
+    return await this.sponsorPromosRepo.findSPromoId(sponsorPromoId);
   }
 
   @get("/sponsorPromoTitle")
   async getSpecificPromo_title(
     @param.query.string("title") title: string
   ): Promise<any> {
-    return await this.sponsorPromosRepo.find({ where: { title } });
+    return await this.sponsorPromosRepo.findSPromoTitle(title);
   }
 
   @post("/newSponsorPromos")

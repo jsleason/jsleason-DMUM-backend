@@ -16,21 +16,23 @@ export class EventController {
   @get("/allEvents")
   async getAllEvents(
   ): Promise<Array<any>> {
-    return await this.eventRepo.find();
+    return await this.eventRepo.findAllEvents();
   }
 
   @get("/featuredEvents")
   async getFeatured(
+    @param.query.string("featured") featured: string
   ): Promise<Array<any>> {
-    return await this.eventRepo.find({ where: { featured: "Y" } });
+    return await this.eventRepo.findFeaturedEvents("Y");
 
     //throw new HttpErrors.NotFound("Sorry, event not found");
   }
 
   @get("/activeEvents")
   async getActive(
+    @param.query.string("active") active: string
   ): Promise<Array<any>> {
-    return await this.eventRepo.find({ where: { active: "Y" } });
+    return await this.eventRepo.findActiveEvents("Y");
 
     //throw new HttpErrors.NotFound("Sorry, event not found");
   }
@@ -39,7 +41,7 @@ export class EventController {
   async getSpecificEvent_Id(
     @param.query.number("eventId") eventId: number
   ): Promise<any> {
-    return await this.eventRepo.findOne({ where: { eventId } });
+    return await this.eventRepo.findEventId(eventId);
 
     // throw new HttpErrors.NotFound("Sorry, event not found");
   }
@@ -48,7 +50,7 @@ export class EventController {
   async getSpecificEvent_name(
     @param.query.string("name") name: string
   ): Promise<any> {
-    return await this.eventRepo.findOne({ where: { name } });
+    return await this.eventRepo.findEventName(name);
 
     //throw new HttpErrors.NotFound("Sorry, event not found");
   }

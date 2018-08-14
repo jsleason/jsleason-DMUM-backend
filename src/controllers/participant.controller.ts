@@ -17,7 +17,9 @@ export class ParticipantController {
   @get("/allParticipants")
   async getAllParticipants(
   ): Promise<Array<any>> {
-    return await this.participantRepo.find();
+    let dancerData = await this.participantRepo.findAllDancers();
+    let alumData = await this.participantRepo.findAllAlum();
+    return dancerData + alumData;
   }
 
   @get("/participantId")

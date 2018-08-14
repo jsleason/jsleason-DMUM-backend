@@ -19,7 +19,7 @@ export class CheckinController {
   @get("/allCheckins")
   async getAllCheckins(
   ): Promise<Array<any>> {
-    return await this.checkinRepo.find();
+    return await this.checkinRepo.findAllCheckin();
   }
 
   @get("/checkinId")
@@ -28,41 +28,26 @@ export class CheckinController {
   ): Promise<Checkin> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.checkinRepo.findById(checkinId);
-    // if (checkinId == "A") {
-    //   return "ABC";
-    // }
+    return await this.checkinRepo.findCheckinId(checkinId);
 
-    // if (checkinId == "B") {
-    //   return "BCD";
-    // }
-
-    // throw new HttpErrors.NotFound("Sorry, checkin not found");
   }
 
   @get("/participantCheckins")
   async getParticipantCheckins(
     @param.query.string("participantId") participantId: string
   ): Promise<Array<any>> {
-    // check if a Check In corresponding to checkingId exists
 
-    return await this.checkinRepo.find({ where: { participantId } });
+    return await this.checkinRepo.findParticipantCheckin(participantId);
 
-    //throw new HttpErrors.NotFound("Sorry, checkin not found");
   }
 
   @get("/eventCheckins")
   async getEventCheckIns(
     @param.query.number("eventId") eventId: number,
   ): Promise<Checkin[]> {
-    // called like /checkins?eventId=<input>
-    // TODO: check if a Check In corresponding to checkingId exists
 
-    // Get all checkin corresponding to a specific event ID
+    return await this.checkinRepo.findEventCheckin(eventId);
 
-    return await this.checkinRepo.find({ where: { eventId } });
-
-    // throw new HttpErrors.NotFound("Sorry, checkin not found");
   }
 
   @post("/newCheckin")
@@ -74,14 +59,5 @@ export class CheckinController {
     return createdCheckin;
 
   }
-
-
-  // sign({
-  //   user: user
-  // }, 'shh', {
-  //   issuer: 'auth.ix.co.za',
-  //   audience: 'ix.co.za'
-  // });
-
 
 }

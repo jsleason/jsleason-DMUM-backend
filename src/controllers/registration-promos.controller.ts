@@ -16,7 +16,7 @@ export class RegistrationPromosController {
   @get("/allRegistrationPromos")
   async getAllPromos(
   ): Promise<Array<any>> {
-    let arr = await this.registrationPromosRepo.find();
+    let arr = await this.registrationPromosRepo.findRPromos();
     if (arr.length == 0) {
       console.log("No Current Promotions");
     }
@@ -27,7 +27,7 @@ export class RegistrationPromosController {
   async getSpecificPromo_Id(
     @param.query.number("registrationPromoId") registrationPromoId: number
   ): Promise<any> {
-    return await this.registrationPromosRepo.findOne({ where: { registrationPromoId } });
+    return await this.registrationPromosRepo.findRPromoId(registrationPromoId);
 
   }
 
@@ -35,7 +35,7 @@ export class RegistrationPromosController {
   async getSpecificPromo_title(
     @param.query.string("title") title: string
   ): Promise<any> {
-    return await this.registrationPromosRepo.find({ where: { title } });
+    return await this.registrationPromosRepo.findRPromoTitle(title);
 
   }
 

@@ -8,7 +8,8 @@
     "port": "3306",
     "user": "root",
     "password": "",
-    "database": "DMUM"
+    "database": "DMUM",
+    "insecureAuth": "true"
   },
   "live": {
     "driver": "mysql",
@@ -26,6 +27,7 @@
     },
     "database": {
       "ENV": "DB_DATABASE"
-    }
+    },
+    "insecureAuth": "true"
   }
 }

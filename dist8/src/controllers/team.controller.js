@@ -23,13 +23,13 @@ let TeamController = class TeamController {
         this.teamRepo = teamRepo;
     }
     async getAllTeams() {
-        return await this.teamRepo.find();
+        return await this.teamRepo.findAllTeams();
     }
     async getSpecificTeam_Id(teamId) {
-        return await this.teamRepo.findOne({ where: { teamId } });
+        return await this.teamRepo.findTeamId(teamId);
     }
     async getSpecificTeam_Name(name) {
-        return await this.teamRepo.find({ where: { name } });
+        return await this.teamRepo.findTeamName(name);
     }
     async createTeam(team) {
         let createdTeam = await this.teamRepo.create(team);

@@ -23,11 +23,11 @@ let ProfileController = class ProfileController {
         this.profileRepo = profileRepo;
     }
     async getAllProfiles() {
-        return await this.profileRepo.find();
+        return await this.profileRepo.findAllProfiles();
     }
     async getSpecificEventProfile(eventId) {
         try {
-            return await this.profileRepo.findOne({ where: { eventId: eventId } });
+            return await this.profileRepo.findEventProfile(eventId);
         }
         catch (err) {
             throw new rest_1.HttpErrors.NotFound('Profile not found');

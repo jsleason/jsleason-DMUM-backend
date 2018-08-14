@@ -35,7 +35,8 @@ class DMUM extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestAppl
             "port": process.env.DB_PORT,
             "user": process.env.DB_USER,
             "password": process.env.DB_PASSWORD,
-            "database": process.env.DB_DATABASE
+            "database": process.env.DB_DATABASE,
+            "insecureAuth": "true"
         });
         this.dataSource(dataSourceConfig);
     }

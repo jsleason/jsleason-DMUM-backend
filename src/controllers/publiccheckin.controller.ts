@@ -19,7 +19,7 @@ export class PublicCheckinController {
   @get("/allPublicCheckins")
   async getAllCheckins(
   ): Promise<Array<any>> {
-    return await this.publicCheckinRepo.find();
+    return await this.publicCheckinRepo.findAllPublicCheckin();
   }
 
   @get("/publicCheckinId")
@@ -28,16 +28,7 @@ export class PublicCheckinController {
   ): Promise<PublicCheckin> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.publicCheckinRepo.findById(checkinId);
-    // if (checkinId == "A") {
-    //   return "ABC";
-    // }
-
-    // if (checkinId == "B") {
-    //   return "BCD";
-    // }
-
-    // throw new HttpErrors.NotFound("Sorry, checkin not found");
+    return await this.publicCheckinRepo.findPublicCheckinId(checkinId);
   }
 
   @get("/participantCheckins")
@@ -46,7 +37,7 @@ export class PublicCheckinController {
   ): Promise<Array<any>> {
     // check if a Check In corresponding to checkingId exists
 
-    return await this.publicCheckinRepo.find({ where: { participantId } });
+    return await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
 
     //throw new HttpErrors.NotFound("Sorry, checkin not found");
   }
@@ -60,7 +51,7 @@ export class PublicCheckinController {
 
     // Get all checkin corresponding to a specific event ID
 
-    return await this.publicCheckinRepo.find({ where: { eventId } });
+    return await this.publicCheckinRepo.findEventPublicCheckin(eventId);
 
     // throw new HttpErrors.NotFound("Sorry, checkin not found");
   }

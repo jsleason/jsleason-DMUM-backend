@@ -16,25 +16,8 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const participant_1 = require("../models/participant");
-//import { GoogleSheet } from '../google-sheets-wrapper/src/GoogleSheet';
-//import * as GoogleSpreadsheet from 'google-spreadsheet';
 const util_1 = require("util");
 const rest_1 = require("@loopback/rest");
-// export class ParticipantRepository extends DefaultCrudRepository<
-//   Participant,
-//   typeof Participant.prototype.id
-//   >
-// {
-//   constructor(@inject('datasources.db') protected datasource: DataSource) {
-//     super(Participant, datasource);
-//   }
-// }
-// async function accessSpreadsheet() {
-//   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
-//   await promisify(doc.useServiceAccountAuth)(creds);
-//   const info = await promisify(doc.getInfo)();
-//   console.log('Loaded doc: ' + info.title);
-// }
 let ParticipantRepository = class ParticipantRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(participant_1.Participant, datasource);
