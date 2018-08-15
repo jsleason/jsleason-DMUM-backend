@@ -38,37 +38,35 @@ export class CheckinRepository extends DefaultCrudRepository<
 
   async findParticipantCheckin(Id: string) {
     let data = await this.findAllCheckin();
+    let arr = Array<any>();
     for (const row of data) {
       if (row.participantid == Id) {
-        return row;
+        arr.push(row);
       }
     };
 
-    return { success: false };
+    return arr;
   }
 
   async findEventCheckin(Id: number) {
     let data = await this.findAllCheckin();
+    let arr = Array<any>();
     for (const row of data) {
       if (row.eventid == Id) {
-        return row;
+        arr.push(row);
       }
     };
 
-    return { success: false };
+    return arr;
   }
 
   async createCheckin(checkin: Checkin) {
-    let data = await this.findAllCheckin();
-    for (const row of data) {
-      if (!row.value) {
-        row.eventid = checkin.eventId;
-        row.participantid = checkin.participantId;
-        break;
-      }
-      break;
-    }
-    return data;
+    const GoogleSpreadsheet = require('google-spreadsheet');
+    const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+    await promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'))
+    const info = await promisify(doc.getInfo)();
+    const checkinSheet = info.worksheets[0];
+    checkinSheet.addRow(checkin);
+    return checkin;
   }
-
 }

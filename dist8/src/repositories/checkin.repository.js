@@ -42,35 +42,34 @@ let CheckinRepository = class CheckinRepository extends repository_1.DefaultCrud
     }
     async findParticipantCheckin(Id) {
         let data = await this.findAllCheckin();
+        let arr = Array();
         for (const row of data) {
             if (row.participantid == Id) {
-                return row;
+                arr.push(row);
             }
         }
         ;
-        return { success: false };
+        return arr;
     }
     async findEventCheckin(Id) {
         let data = await this.findAllCheckin();
+        let arr = Array();
         for (const row of data) {
             if (row.eventid == Id) {
-                return row;
+                arr.push(row);
             }
         }
         ;
-        return { success: false };
+        return arr;
     }
     async createCheckin(checkin) {
-        let data = await this.findAllCheckin();
-        for (const row of data) {
-            if (!row.value) {
-                row.eventid = checkin.eventId;
-                row.participantid = checkin.participantId;
-                break;
-            }
-            break;
-        }
-        return data;
+        const GoogleSpreadsheet = require('google-spreadsheet');
+        const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+        await util_1.promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'));
+        const info = await util_1.promisify(doc.getInfo)();
+        const checkinSheet = info.worksheets[0];
+        checkinSheet.addRow(checkin);
+        return checkin;
     }
 };
 CheckinRepository = __decorate([

@@ -33,14 +33,28 @@ let CheckinController = class CheckinController {
         return await this.checkinRepo.findCheckinId(checkinId);
     }
     async getParticipantCheckins(participantId) {
-        return await this.checkinRepo.findParticipantCheckin(participantId);
+        let arr = await this.checkinRepo.findParticipantCheckin(participantId);
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return arr;
     }
     async getEventCheckIns(eventId) {
-        return await this.checkinRepo.findEventCheckin(eventId);
+        let arr = await this.checkinRepo.findEventCheckin(eventId);
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return arr;
     }
     async createCheckin(checkin) {
-        let createdCheckin = await this.checkinRepo.create(checkin);
-        return createdCheckin;
+        let createdCheckin = await this.checkinRepo.createCheckin(checkin);
+        checkin.checkinId = checkin.participantId + checkin.eventId;
+        try {
+            return createdCheckin;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.NotFound('Cannot post checkin');
+        }
     }
 };
 __decorate([

@@ -29,10 +29,10 @@ __decorate([
 ], Checkin.prototype, "participantId", void 0);
 __decorate([
     repository_1.property({
-        type: "number",
+        type: "string",
         id: true
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Checkin.prototype, "checkinId", void 0);
 Checkin = __decorate([
     repository_1.model({

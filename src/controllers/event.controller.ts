@@ -21,7 +21,6 @@ export class EventController {
 
   @get("/featuredEvents")
   async getFeatured(
-    @param.query.string("featured") featured: string
   ): Promise<Array<any>> {
     return await this.eventRepo.findFeaturedEvents("Y");
 
@@ -30,7 +29,6 @@ export class EventController {
 
   @get("/activeEvents")
   async getActive(
-    @param.query.string("active") active: string
   ): Promise<Array<any>> {
     return await this.eventRepo.findActiveEvents("Y");
 

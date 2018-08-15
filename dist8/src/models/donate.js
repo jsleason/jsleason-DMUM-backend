@@ -17,10 +17,10 @@ let Donate = class Donate extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: "number",
+        type: "string",
         id: true
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Donate.prototype, "donateId", void 0);
 __decorate([
     repository_1.property({

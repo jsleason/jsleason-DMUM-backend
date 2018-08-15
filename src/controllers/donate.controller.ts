@@ -84,8 +84,13 @@ export class DonateController {
     });
     console.log('charge created!')
     donate.chargeId = charge.id;
+    donate.donateId = charge.amount + donate.name;
     let createdDonate = await this.donateRepo.create(donate);
-    return createdDonate;
+
+    try { return createdDonate; }
+    catch (err) {
+      throw new HttpErrors.NotFound('Cannot post donation');
+    }
   }
 
 }

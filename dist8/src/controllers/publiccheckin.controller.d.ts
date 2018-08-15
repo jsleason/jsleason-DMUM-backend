@@ -8,6 +8,6 @@ export declare class PublicCheckinController {
     getAllCheckins(): Promise<Array<any>>;
     getSpecificCheckin_Id(checkinId: number): Promise<PublicCheckin>;
     getParticipantCheckins(participantId: string): Promise<Array<any>>;
-    getEventCheckIns(eventId: number): Promise<PublicCheckin[]>;
+    getEventCheckIns(eventId: any): Promise<Array<any>>;
     createCheckin(publicCheckin: PublicCheckin): Promise<PublicCheckin>;
 }

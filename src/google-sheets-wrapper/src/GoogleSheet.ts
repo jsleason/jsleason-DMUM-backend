@@ -1,4 +1,5 @@
 import { RowMapper } from "./RowMapper";
+import { HttpErrors } from "../../../node_modules/@loopback/rest";
 
 export class GoogleSheet {
 
@@ -75,6 +76,7 @@ export class GoogleSheet {
                 if (pos === -1) {
                     throw Error(`Property "${prop} does not exist in spreadsheet"`);
                 }
+
 
                 rowForGoogle.splice(pos, 0, row[prop]); // Insert them in correct position
             }

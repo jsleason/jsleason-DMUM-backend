@@ -35,10 +35,10 @@ __decorate([
 ], PublicCheckin.prototype, "uniqname", void 0);
 __decorate([
     repository_1.property({
-        type: "number",
+        type: "string",
         id: true
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], PublicCheckin.prototype, "checkinId", void 0);
 PublicCheckin = __decorate([
     repository_1.model({

@@ -17,10 +17,10 @@ export class Checkin extends Entity {
   participantId: string;
 
   @property({
-    type: "number",
+    type: "string",
     id: true
   })
-  checkinId: number;
+  checkinId: string;
 
   getId() {
     return this.id;

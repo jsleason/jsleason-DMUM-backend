@@ -5,8 +5,8 @@ export declare class EventRepository extends DefaultCrudRepository<Event, typeof
     protected datasource: DataSource;
     constructor(datasource: DataSource);
     findAllEvents(): Promise<any>;
-    findFeaturedEvents(featured: string): Promise<any>;
-    findActiveEvents(active: string): Promise<any>;
+    findFeaturedEvents(featured: string): Promise<any[]>;
+    findActiveEvents(active: string): Promise<any[]>;
     findEventId(id: number): Promise<any>;
-    findEventName(name: string): Promise<any>;
+    findEventName(name: string): Promise<any[]>;
 }

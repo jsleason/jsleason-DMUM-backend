@@ -3,6 +3,6 @@ export declare class PublicCheckin extends Entity {
     eventId: number;
     name: string;
     uniqname: string;
-    checkinId: number;
+    checkinId: string;
     getId(): any;
 }

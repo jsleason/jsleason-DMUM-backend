@@ -7,10 +7,10 @@ import { model, property, Entity } from "@loopback/repository";
 export class Donate extends Entity {
 
   @property({
-    type: "number",
+    type: "string",
     id: true
   })
-  donateId: number;
+  donateId: string;
 
   @property({
     type: "string"

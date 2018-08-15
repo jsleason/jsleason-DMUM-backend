@@ -22,10 +22,10 @@ export class PublicCheckin extends Entity {
   uniqname: string;
 
   @property({
-    type: "number",
+    type: "string",
     id: true
   })
-  checkinId: number;
+  checkinId: string;
 
   getId() {
     return this.id;

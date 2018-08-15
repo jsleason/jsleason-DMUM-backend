@@ -34,19 +34,32 @@ let PublicCheckinController = class PublicCheckinController {
     }
     async getParticipantCheckins(participantId) {
         // check if a Check In corresponding to checkingId exists
-        return await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
+        let arr = await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return await arr;
         //throw new HttpErrors.NotFound("Sorry, checkin not found");
     }
     async getEventCheckIns(eventId) {
         // called like /checkins?eventId=<input>
         // TODO: check if a Check In corresponding to checkingId exists
+        let arr = await this.publicCheckinRepo.findEventPublicCheckin(eventId);
         // Get all checkin corresponding to a specific event ID
-        return await this.publicCheckinRepo.findEventPublicCheckin(eventId);
-        // throw new HttpErrors.NotFound("Sorry, checkin not found");
+        if (arr.length == 0) {
+            console.log("No Current Promotions");
+        }
+        return await arr;
     }
     async createCheckin(publicCheckin) {
-        let createdCheckin = await this.publicCheckinRepo.create(publicCheckin);
-        return createdCheckin;
+        publicCheckin.checkinId = publicCheckin.uniqname + publicCheckin.eventId;
+        let createdCheckin = await this.publicCheckinRepo.createPCheckin(publicCheckin);
+        try {
+            return createdCheckin;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.NotFound('Cannot post public checkin');
+        }
     }
 };
 __decorate([
@@ -63,17 +76,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PublicCheckinController.prototype, "getSpecificCheckin_Id", null);
 __decorate([
-    rest_1.get("/participantCheckins"),
+    rest_1.get("/participantPublicCheckins"),
     __param(0, rest_1.param.query.string("participantId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PublicCheckinController.prototype, "getParticipantCheckins", null);
 __decorate([
-    rest_1.get("/eventCheckins"),
+    rest_1.get("/eventPublicCheckins"),
     __param(0, rest_1.param.query.number("eventId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PublicCheckinController.prototype, "getEventCheckIns", null);
 __decorate([

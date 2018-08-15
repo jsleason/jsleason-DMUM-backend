@@ -10,4 +10,5 @@ export declare class DonateRepository extends DefaultCrudRepository<Donate, type
     findDancerDonation(Id: string): Promise<any>;
     findRelationDonation(Id: number): Promise<any>;
     findEventDonation(Id: number): Promise<any>;
+    createDonation(donation: Partial<Donate>): Promise<Partial<Donate>>;
 }

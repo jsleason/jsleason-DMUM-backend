@@ -6,7 +6,7 @@ export declare class CheckinRepository extends DefaultCrudRepository<Checkin, ty
     constructor(datasource: DataSource);
     findAllCheckin(): Promise<any>;
     findCheckinId(Id: number): Promise<any>;
-    findParticipantCheckin(Id: string): Promise<any>;
-    findEventCheckin(Id: number): Promise<any>;
-    createCheckin(checkin: Checkin): Promise<any>;
+    findParticipantCheckin(Id: string): Promise<any[]>;
+    findEventCheckin(Id: number): Promise<any[]>;
+    createCheckin(checkin: Checkin): Promise<Checkin>;
 }

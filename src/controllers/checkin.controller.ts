@@ -36,8 +36,12 @@ export class CheckinController {
   async getParticipantCheckins(
     @param.query.string("participantId") participantId: string
   ): Promise<Array<any>> {
+    let arr = await this.checkinRepo.findParticipantCheckin(participantId);
 
-    return await this.checkinRepo.findParticipantCheckin(participantId);
+    if (arr.length == 0) {
+      console.log("No Current Promotions");
+    }
+    return arr;
 
   }
 
@@ -46,8 +50,11 @@ export class CheckinController {
     @param.query.number("eventId") eventId: number,
   ): Promise<Checkin[]> {
 
-    return await this.checkinRepo.findEventCheckin(eventId);
-
+    let arr = await this.checkinRepo.findEventCheckin(eventId);
+    if (arr.length == 0) {
+      console.log("No Current Promotions");
+    }
+    return arr;
   }
 
   @post("/newCheckin")
@@ -55,8 +62,12 @@ export class CheckinController {
     @requestBody() checkin: Checkin
   ): Promise<Checkin> {
 
-    let createdCheckin = await this.checkinRepo.create(checkin);
-    return createdCheckin;
+    let createdCheckin = await this.checkinRepo.createCheckin(checkin);
+    checkin.checkinId = checkin.participantId + checkin.eventId;
+    try { return createdCheckin; }
+    catch (err) {
+      throw new HttpErrors.NotFound('Cannot post checkin');
+    }
 
   }
 

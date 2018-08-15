@@ -6,6 +6,7 @@ export declare class PublicCheckinRepository extends DefaultCrudRepository<Publi
     constructor(datasource: DataSource);
     findAllPublicCheckin(): Promise<any>;
     findPublicCheckinId(Id: number): Promise<any>;
-    findPublicParticipantCheckin(Id: string): Promise<any>;
-    findEventPublicCheckin(Id: number): Promise<any>;
+    findPublicParticipantCheckin(pid: string): Promise<any[]>;
+    findEventPublicCheckin(Id: number): Promise<any[]>;
+    createPCheckin(checkin: PublicCheckin): Promise<PublicCheckin>;
 }

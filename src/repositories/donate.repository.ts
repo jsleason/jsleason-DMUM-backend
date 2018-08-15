@@ -21,8 +21,8 @@ export class DonateRepository extends DefaultCrudRepository<
     const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
     await promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'))
     const info = await promisify(doc.getInfo)();
-    const checkinSheet = info.worksheets[1];
-    return await promisify(checkinSheet.getRows)();
+    const donateSheet = info.worksheets[1];
+    return await promisify(donateSheet.getRows)();
   }
 
   async findDonateId(Id: number) {
@@ -80,9 +80,14 @@ export class DonateRepository extends DefaultCrudRepository<
     return { success: false };
   }
 
-  // async createDonation(donation: Partial<Donate>) {
-  //   let data = await this.findAllDonations();
-  //   return data;
-  // }
+  async createDonation(donation: Partial<Donate>) {
+    const GoogleSpreadsheet = require('google-spreadsheet');
+    const doc = new GoogleSpreadsheet('17R2QymLbIam5gNmVDgyWcjSZwgrx_GWVeRmZxFrJS2k');
+    await promisify(doc.useServiceAccountAuth)(require('../../../DMUMAPP-creds.json'))
+    const info = await promisify(doc.getInfo)();
+    const donateSheet = info.worksheets[1];
+    donateSheet.addRow(donation);
+    return donation;
+  }
 
 }

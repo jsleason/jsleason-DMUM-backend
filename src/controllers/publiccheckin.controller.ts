@@ -31,38 +31,45 @@ export class PublicCheckinController {
     return await this.publicCheckinRepo.findPublicCheckinId(checkinId);
   }
 
-  @get("/participantCheckins")
+  @get("/participantPublicCheckins")
   async getParticipantCheckins(
     @param.query.string("participantId") participantId: string
   ): Promise<Array<any>> {
     // check if a Check In corresponding to checkingId exists
-
-    return await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
+    let arr = await this.publicCheckinRepo.findPublicParticipantCheckin(participantId);
+    if (arr.length == 0) {
+      console.log("No Current Promotions");
+    }
+    return await arr;
 
     //throw new HttpErrors.NotFound("Sorry, checkin not found");
   }
 
-  @get("/eventCheckins")
+  @get("/eventPublicCheckins")
   async getEventCheckIns(
-    @param.query.number("eventId") eventId: number,
-  ): Promise<PublicCheckin[]> {
+    @param.query.number("eventId") eventId: any,
+  ): Promise<Array<any>> {
     // called like /checkins?eventId=<input>
     // TODO: check if a Check In corresponding to checkingId exists
-
+    let arr = await this.publicCheckinRepo.findEventPublicCheckin(eventId);
     // Get all checkin corresponding to a specific event ID
-
-    return await this.publicCheckinRepo.findEventPublicCheckin(eventId);
-
-    // throw new HttpErrors.NotFound("Sorry, checkin not found");
+    if (arr.length == 0) {
+      console.log("No Current Promotions");
+    }
+    return await arr;
   }
 
   @post("/newPublicCheckin")
   async createCheckin(
     @requestBody() publicCheckin: PublicCheckin
   ): Promise<PublicCheckin> {
+    publicCheckin.checkinId = publicCheckin.uniqname + publicCheckin.eventId;
+    let createdCheckin = await this.publicCheckinRepo.createPCheckin(publicCheckin);
+    try { return createdCheckin; }
+    catch (err) {
+      throw new HttpErrors.NotFound('Cannot post public checkin');
 
-    let createdCheckin = await this.publicCheckinRepo.create(publicCheckin);
-    return createdCheckin;
+    }
 
   }
 

@@ -27,24 +27,26 @@ export class EventRepository extends DefaultCrudRepository<
 
   async findFeaturedEvents(featured: string) {
     let data = await this.findAllEvents();
+    let fe = Array<any>();
     for (const row of data) {
       if (row.featured == featured) {
-        return row;
+        fe.push(row);
       }
     };
 
-    return { success: false };
+    return fe;
   }
 
   async findActiveEvents(active: string) {
     let data = await this.findAllEvents();
+    let ae = Array<any>();
     for (const row of data) {
       if (row.active == active) {
-        return row;
+        ae.push(row);
       }
     };
 
-    return { success: false };
+    return ae;
   }
 
   async findEventId(id: number) {
@@ -60,13 +62,14 @@ export class EventRepository extends DefaultCrudRepository<
 
   async findEventName(name: string) {
     let data = await this.findAllEvents();
+    let arr = Array<any>();
     for (const row of data) {
       if (row.name == name) {
-        return row;
+        arr.push(row);
       }
     };
 
-    return { success: false };
+    return arr;
   }
 
 }

@@ -1,6 +1,6 @@
 import { Entity } from "@loopback/repository";
 export declare class Donate extends Entity {
-    donateId: number;
+    donateId: string;
     name: string;
     dancer: string;
     relationId: number;

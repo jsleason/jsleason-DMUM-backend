@@ -32,23 +32,25 @@ let EventRepository = class EventRepository extends repository_1.DefaultCrudRepo
     }
     async findFeaturedEvents(featured) {
         let data = await this.findAllEvents();
+        let fe = Array();
         for (const row of data) {
             if (row.featured == featured) {
-                return row;
+                fe.push(row);
             }
         }
         ;
-        return { success: false };
+        return fe;
     }
     async findActiveEvents(active) {
         let data = await this.findAllEvents();
+        let ae = Array();
         for (const row of data) {
             if (row.active == active) {
-                return row;
+                ae.push(row);
             }
         }
         ;
-        return { success: false };
+        return ae;
     }
     async findEventId(id) {
         let data = await this.findAllEvents();
@@ -62,13 +64,14 @@ let EventRepository = class EventRepository extends repository_1.DefaultCrudRepo
     }
     async findEventName(name) {
         let data = await this.findAllEvents();
+        let arr = Array();
         for (const row of data) {
             if (row.name == name) {
-                return row;
+                arr.push(row);
             }
         }
         ;
-        return { success: false };
+        return arr;
     }
 };
 EventRepository = __decorate([
